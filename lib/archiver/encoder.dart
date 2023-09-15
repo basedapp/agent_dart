@@ -50,7 +50,7 @@ class SigningBlockEncoder extends ZipEncoder {
               messages: [message],
               signatures: [signature],
               publicKeys: [publicKey],
-            )
+            ),
           ],
         );
 
@@ -77,6 +77,7 @@ class SingingBlockZipFileEncoder extends ZipFileEncoder {
     int? level,
     bool followLinks = true,
     DateTime? modified,
+    void Function(double)? onProgress,
   }) {
     final dirPath = dir.path;
     final zipPath = filename ?? '$dirPath.zip';
@@ -107,6 +108,7 @@ class SingingBlockZipFileEncoder extends ZipFileEncoder {
     bool includeDirName = true,
     int? level,
     bool followLinks = true,
+    void Function(double)? onProgress,
   }) async {
     final List files = dir.listSync(recursive: true, followLinks: followLinks);
     final futures = <Future<void>>[];
